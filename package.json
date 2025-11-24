@@ -36,6 +36,15 @@
   "license": "MIT",
   "author": "Aleksei Krasnoperov",
   "private": false,
+  "files": [
+    "dist/",
+    "script/",
+    "skills/",
+    ".claude-plugin/",
+    "LICENSE",
+    "README.md",
+    "PLUGIN.md"
+  ],
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@google/generative-ai": "^0.24.1",
