@@ -6,7 +6,7 @@ allowed-tools: Bash
 
 # Gemini Image Generation
 
-Local CLI: `./script/gemini-images.js <command> [args] [options]`
+Local CLI: `./scripts/gemini-images.js <command> [args] [options]`
 
 ## Core Primitives
 
@@ -39,17 +39,17 @@ npm run build
 
 ```bash
 # Generate
-./script/gemini-images.js generate \
+./scripts/gemini-images.js generate \
   "pixel art tree, white background" \
   --output tree.png
 
 # Edit (transform with reference)
-./script/gemini-images.js edit tree.png \
+./scripts/gemini-images.js edit tree.png \
   "add glowing runes" \
   --output tree-magic.png
 
 # Compose (combine references)
-./script/gemini-images.js compose hero.png sword.png \
+./scripts/gemini-images.js compose hero.png sword.png \
   "character holding sword" \
   --output hero-armed.png
 ```
@@ -63,7 +63,7 @@ npm run build
 Create reference sheet with multiple views and key accessories:
 
 ```bash
-./script/gemini-images.js generate \
+./scripts/gemini-images.js generate \
   "Character sheet: front view, back view, side view. Character: forest ranger, auburn hair, green jerkin. Materials: leather, cloth. Include brief captions for text placement." \
   --output 1_character_sheet.png
 ```
@@ -75,7 +75,7 @@ Fix materials, colors, proportions, eyes, key textures in this foundational asse
 Generate accessory variants separately with attachment details:
 
 ```bash
-./script/gemini-images.js generate \
+./scripts/gemini-images.js generate \
   "Accessory sheet: backpack variants (felt, leather, canvas). Show straps, buckles, attachment points. Brief captions." \
   --output 2_accessories.png
 ```
@@ -85,7 +85,7 @@ Generate accessory variants separately with attachment details:
 Reference specific images and maintain consistent structure:
 
 ```bash
-./script/gemini-images.js compose 1_character_sheet.png 2_accessories.png \
+./scripts/gemini-images.js compose 1_character_sheet.png 2_accessories.png \
   "Image 1: Character sheet
 Image 2: Accessory sheet
 Scene: Forest clearing
@@ -113,7 +113,7 @@ Say what to add/remove/relocate to avoid unintended carryover:
 
 ```bash
 # Clear state changes
-./script/gemini-images.js edit scene.png \
+./scripts/gemini-images.js edit scene.png \
   "Remove backpack. Character holds map in both hands. Backpack not visible." \
   --output new_scene.png
 ```
