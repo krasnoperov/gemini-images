@@ -1,0 +1,10 @@
+src/
+examples/
+*.md
+!SKILL.md
+tsconfig.json
+rollup.config.js
+.claude-plugin/
+skills/
+.DS_Store
+*.log

@@ -1,0 +1,54 @@
+{
+  "name": "gemini-images",
+  "version": "1.0.0",
+  "description": "AI-powered game asset generation tool - Create 2D game sprites, animations, tileable textures, and environments using Google Gemini",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "gemini-images": "./dist/cli.js"
+  },
+  "scripts": {
+    "dev": "node src/cli.ts",
+    "build": "rollup -c",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test 'test/**/*.test.ts'",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "keywords": [
+    "gemini",
+    "game-assets",
+    "game-development",
+    "sprite-generation",
+    "pixel-art",
+    "image-generation",
+    "ai",
+    "isometric",
+    "animation",
+    "ios-game",
+    "2d-game",
+    "tileable-textures",
+    "parallax",
+    "character-sprites",
+    "cli"
+  ],
+  "license": "MIT",
+  "author": "Aleksei Krasnoperov",
+  "private": false,
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@google/generative-ai": "^0.24.1",
+    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "@stylistic/eslint-plugin": "^5.6.1",
+    "@types/node": "^24.10.1",
+    "eslint": "^9.39.1",
+    "rollup": "^4.53.3",
+    "tslib": "^2.8.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.47.0"
+  }
+}
