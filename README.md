@@ -11,13 +11,13 @@ npm run build
 export GEMINI_API_KEY="your-key-here"
 
 # Generate from text
-./script/gemini-images.js generate "pixel art tree" --output tree.png
+.skills/gemini-images/scripts/gemini-images.js generate "pixel art tree" --output tree.png
 
 # Transform image
-./script/gemini-images.js edit tree.png "add glowing runes" --output tree-magic.png
+.skills/gemini-images/scripts/gemini-images.js edit tree.png "add glowing runes" --output tree-magic.png
 
 # Combine references
-./script/gemini-images.js compose hero.png sword.png "character holding sword" --output hero-armed.png
+.skills/gemini-images/scripts/gemini-images.js compose hero.png sword.png "character holding sword" --output hero-armed.png
 ```
 
 Get your API key: [Google AI Studio](https://aistudio.google.com/app/apikey)
@@ -43,7 +43,7 @@ That's it. These three operations compose into any workflow.
 
 ## Examples
 
-See [`examples/`](examples/) directory:
+See [`skills/gemini-images/examples/`](skills/gemini-images/examples/) directory:
 
 1. **01-primitives.sh** - Basic usage of all three operations
 2. **02-consistency-pipeline.sh** - Reference sheet methodology step-by-step
@@ -54,14 +54,14 @@ Gemini has spatial understanding - it preserves visual features when given speci
 
 ### Character Sheets
 ```bash
-./script/gemini-images.js generate \
+.skills/gemini-images/scripts/gemini-images.js generate \
   "Character sheet: front view, back view, side view. Character: ranger, auburn hair, green jerkin." \
   --output character_sheet.png
 ```
 
 ### Structured Prompts
 ```bash
-./script/gemini-images.js compose character_sheet.png accessories.png \
+.skills/gemini-images/scripts/gemini-images.js compose character_sheet.png accessories.png \
   "Image 1: Character sheet
 Image 2: Accessories
 Character: From image 1, front-facing
@@ -117,11 +117,11 @@ npm run dev        # Dev mode with type stripping
 
 ## Claude Code Plugin
 
-This can be used as a Claude Code skill:
+Install from marketplace:
 
 ```bash
-cd /path/to/claude-projects/your-project
-ln -s /path/to/gemini-images/.claude-plugin/skills/gemini-images skills/gemini-images
+/plugin marketplace add krasnoperov/claude-plugins
+/plugin install gemini-images@krasnoperov-plugins
 ```
 
 See [`skills/gemini-images/SKILL.md`](skills/gemini-images/SKILL.md) for skill documentation.

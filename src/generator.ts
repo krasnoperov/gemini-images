@@ -45,7 +45,7 @@ export class GeminiImageGenerator {
   /**
    * Execute an API call with retry logic for handling service overload
    */
-  private async withRetry<T>(
+  private async withRetry<T> (
     operation: () => Promise<T>,
     operationName: string
   ): Promise<T> {
@@ -85,7 +85,7 @@ export class GeminiImageGenerator {
           console.error(`❌ ${operationName}: Failed after ${this.maxRetries + 1} attempts`)
           throw new Error(
             `Service overloaded after ${this.maxRetries + 1} attempts. ` +
-            `Please try again later or use a different model. ` +
+            'Please try again later or use a different model. ' +
             `Original error: ${error.message}`
           )
         }
@@ -98,7 +98,7 @@ export class GeminiImageGenerator {
   /**
    * Sleep utility for retry delays
    */
-  private sleep(ms: number): Promise<void> {
+  private sleep (ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms))
   }
 

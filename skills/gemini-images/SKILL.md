@@ -30,115 +30,45 @@ compose <img1> <img2> ... "<prompt>"         # Images + Instructions → Image
 
 ```bash
 export GEMINI_API_KEY="your-key"  # Get at https://aistudio.google.com/app/apikey
-npm run build
 ```
 
-## Examples
-
-### Basic Operations
+## Quick Examples
 
 ```bash
-# Generate
-./scripts/gemini-images.js generate \
-  "pixel art tree, white background" \
-  --output tree.png
-
-# Edit (transform with reference)
-./scripts/gemini-images.js edit tree.png \
-  "add glowing runes" \
-  --output tree-magic.png
-
-# Compose (combine references)
-./scripts/gemini-images.js compose hero.png sword.png \
-  "character holding sword" \
-  --output hero-armed.png
+./scripts/gemini-images.js generate "pixel art tree, white background" --output tree.png
+./scripts/gemini-images.js edit tree.png "add glowing runes" --output tree-magic.png
+./scripts/gemini-images.js compose hero.png sword.png "character holding sword" --output hero-armed.png
 ```
 
-### Reference Sheet Methodology
+See `examples/` for complete working scripts.
 
-**Key Insight:** Gemini has spatial understanding - it can generate different views/poses while preserving visual features when given specific references.
+**Note:** Output extension may differ from requested (e.g., `.webp` instead of `.png`) based on Gemini's response. Match by filename pattern when chaining operations.
 
-#### 1. Start with Character Sheet
+## Reference Sheet Methodology
 
-Create reference sheet with multiple views and key accessories:
+**Key Insight:** Gemini has spatial understanding - it generates different views/poses while preserving visual features when given specific references.
 
-```bash
-./scripts/gemini-images.js generate \
-  "Character sheet: front view, back view, side view. Character: forest ranger, auburn hair, green jerkin. Materials: leather, cloth. Include brief captions for text placement." \
-  --output 1_character_sheet.png
+### Consistency Techniques
+
+1. **Character sheets** - Generate front/back/side views to establish visual identity
+2. **Accessory sheets** - Generate items separately with attachment details
+3. **Structured prompts** - Use labels: `Image 1:`, `Scene:`, `Character:`, `Lighting:`
+4. **Visual anchors** - Repeat exact phrases: "auburn hair", "soft natural light, top-left"
+5. **Small deltas** - Change ONE thing per step (pose OR location OR accessory)
+6. **Explicit state changes** - Say what to add/remove: "Remove backpack. Backpack not visible."
+7. **Entity references** - Use "robot from image 1" not just "the robot"
+
+### Structured Prompt Template
+
 ```
-
-Fix materials, colors, proportions, eyes, key textures in this foundational asset.
-
-#### 2. Separate Accessory Sheets
-
-Generate accessory variants separately with attachment details:
-
-```bash
-./scripts/gemini-images.js generate \
-  "Accessory sheet: backpack variants (felt, leather, canvas). Show straps, buckles, attachment points. Brief captions." \
-  --output 2_accessories.png
+Image 1: [description]
+Image 2: [description]
+Scene: [setting]
+Character: [entity] from image [N], [pose]
+Lighting: [direction, quality]
+Camera: [angle, shot type]
+Constraints: [what to preserve]
 ```
-
-#### 3. Use Structured Prompts
-
-Reference specific images and maintain consistent structure:
-
-```bash
-./scripts/gemini-images.js compose 1_character_sheet.png 2_accessories.png \
-  "Image 1: Character sheet
-Image 2: Accessory sheet
-Scene: Forest clearing
-Character: Ranger from image 1, front-facing
-Action: Standing with backpack from image 2
-Lighting: Soft natural light, top-left
-Camera: Eye level, medium shot
-Background: Blurred forest, bokeh
-Items: Backpack from image 2 worn on back
-Constraints: Maintain felt textures, leather straps visible" \
-  --output scene.png
-```
-
-#### 4. Maintain Visual Anchors
-
-Repeat **exact phrases** across prompts:
-- Colors/materials: "auburn hair", "green leather jerkin", "felt textures"
-- Lighting: "soft natural light, top-left"
-- Camera: "eye level, medium shot"
-- Setting: "studio light" or "macro diorama"
-
-#### 5. Be Explicit About State Changes
-
-Say what to add/remove/relocate to avoid unintended carryover:
-
-```bash
-# Clear state changes
-./scripts/gemini-images.js edit scene.png \
-  "Remove backpack. Character holds map in both hands. Backpack not visible." \
-  --output new_scene.png
-```
-
-#### 6. Iterate in Small Deltas
-
-Change **one major thing per step** (pose OR location OR accessory):
-
-```bash
-# Good: Change only pose
-edit "Character from image 1, now sitting. Same lighting, camera, background."
-
-# Bad: Change everything at once
-edit "Character sitting in cave at night with torch"
-```
-
-#### 7. Reference Specific Entities
-
-Use "entity from image N" to disambiguate:
-
-```bash
-compose 1_char.png 2_char.png "The robot from image 1 talks to the human from image 2"
-```
-
-Not just "the robot talks to the human" (ambiguous if multiple instances).
 
 ## Options
 
@@ -159,4 +89,3 @@ Not just "the robot talks to the human" (ambiguous if multiple instances).
 **gemini-2.5-flash-image:**
 - Faster, 1K max, 1 reference
 - Quick iterations and testing
-
