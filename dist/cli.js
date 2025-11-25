@@ -1909,7 +1909,8 @@ OPTIONS:
   --image-size <size>       1K (default), 2K, 4K (Pro model required for 2K/4K)
   --output <path>           Output file or directory (default: ./output/)
   --api-key <key>           Gemini API key (or set GEMINI_API_KEY env var)
-  --help                    Show this help message
+  --version, -v             Show version number
+  --help, -h                Show this help message
 
 EXAMPLES:
   gemini-images generate "pixel art tree, white background" --output tree.png
@@ -1986,6 +1987,11 @@ function parseOutputPath(output, defaultFilename) {
 }
 async function main() {
     const args = process.argv.slice(2);
+    if (args.includes('--version') || args.includes('-v')) {
+        const pkg = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf-8'));
+        console.log(pkg.version);
+        process.exit(0);
+    }
     if (args.length === 0 || args.includes('--help') || args.includes('-h')) {
         printUsage();
         process.exit(0);
