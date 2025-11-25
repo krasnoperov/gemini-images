@@ -3,6 +3,4 @@ node_modules/
 .env
 .DS_Store
 output/
-dist/
 *.map
-marketplace/
