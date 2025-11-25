@@ -2039,7 +2039,7 @@ async function main() {
                 }
                 const outputInfo = parseOutputPath(options.output, 'generated.png');
                 await ensureOutputDir(outputInfo.dir);
-                console.log(`Generating: "${this.summarizePrompt(prompt)}"`);
+                console.log(`Generating: "${summarizePrompt(prompt)}"`);
                 const result = await generator.generateFromText({ prompt });
                 if (result.imageData) {
                     const outputPath = join(outputInfo.dir, outputInfo.filename);
