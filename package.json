@@ -1,6 +1,6 @@
 {
   "name": "gemini-images",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Consistent image generation with Nano Banana Pro - Create 2D game sprites, characters, and environments with visual consistency using reference sheets methodology",
   "type": "module",
   "bin": {
