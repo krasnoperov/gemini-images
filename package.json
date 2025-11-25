@@ -4,12 +4,11 @@
   "description": "Consistent image generation with Gemini - Create 2D game sprites, characters, and environments with visual consistency using reference sheets methodology",
   "type": "module",
   "bin": {
-    "gemini-images": "./dist/cli.js",
-    "@krasnoperov/gemini-images": "./dist/cli.js"
+    "gemini-images": "./dist/cli.js"
   },
   "scripts": {
     "dev": "node src/cli.ts",
-    "build": "rollup -c",
+    "build": "rollup -c && chmod +x dist/cli.js",
     "typecheck": "tsc --noEmit",
     "test": "node --test 'test/**/*.test.ts'",
     "lint": "eslint . --fix"
