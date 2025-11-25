@@ -2,6 +2,16 @@
 
 **AI image generation skill for Claude Code** - Generate consistent game sprites, character sheets, and visual assets using Gemini's spatial understanding and reference sheet methodology.
 
+Gemini can preserve visual features across different views, poses, and compositions when given specific image references.
+This skill leverages that capability through precise instructions for managing your assets:
+
+- **Character sheets** - Generate multiple views (front/back/side) that establish a consistent visual identity
+- **Reference composition** - Combine existing images with new elements while preserving original features
+- **Structured prompts** - Use explicit labels and visual anchors to maintain consistency across iterations
+- **Small deltas** - Change one thing at a time (pose, accessory, lighting) to preserve everything else
+
+See [`skills/gemini-images/SKILL.md`](skills/gemini-images/SKILL.md) for complete methodology and techniques.
+
 ## Use in Claude Code
 
 This is a Claude Code skill. Install it from the marketplace:
@@ -18,8 +28,6 @@ Once installed, use the `/gemini-images` skill in your conversations:
 /gemini-images edit character.png "add armor and sword"
 /gemini-images compose character.png background.png "place character in forest scene"
 ```
-
-See [`skills/gemini-images/SKILL.md`](skills/gemini-images/SKILL.md) for complete skill documentation.
 
 ## Command Line Usage
 
