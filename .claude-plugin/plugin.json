@@ -1,7 +1,6 @@
 {
   "name": "gemini-images",
-  "description": "Consistent image generation with Nano Banana Pro - Generate images from text, edit with natural language, create consistent image series with reference sheets methodology.",
-  "version": "1.0.4",
+  "description": "Consistent image generation with Gemini - Generate images from text, edit with natural language, create consistent image series with reference sheets methodology.",
   "author": {
     "name": "krasnoperov"
   }

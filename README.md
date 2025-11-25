@@ -5,19 +5,16 @@
 ## Quick Start
 
 ```bash
-npm install
-npm run build
-
 export GEMINI_API_KEY="your-key-here"
 
 # Generate from text
-.skills/gemini-images/scripts/gemini-images.js generate "pixel art tree" --output tree.png
+npx @krasnoperov/gemini-images generate "pixel art tree" --output tree.png
 
 # Transform image
-.skills/gemini-images/scripts/gemini-images.js edit tree.png "add glowing runes" --output tree-magic.png
+npx @krasnoperov/gemini-images edit tree.png "add glowing runes" --output tree-magic.png
 
 # Combine references
-.skills/gemini-images/scripts/gemini-images.js compose hero.png sword.png "character holding sword" --output hero-armed.png
+npx @krasnoperov/gemini-images compose hero.png sword.png "character holding sword" --output hero-armed.png
 ```
 
 Get your API key: [Google AI Studio](https://aistudio.google.com/app/apikey)
@@ -54,14 +51,14 @@ Gemini has spatial understanding - it preserves visual features when given speci
 
 ### Character Sheets
 ```bash
-.skills/gemini-images/scripts/gemini-images.js generate \
+npx @krasnoperov/gemini-images generate \
   "Character sheet: front view, back view, side view. Character: ranger, auburn hair, green jerkin." \
   --output character_sheet.png
 ```
 
 ### Structured Prompts
 ```bash
-.skills/gemini-images/scripts/gemini-images.js compose character_sheet.png accessories.png \
+npx @krasnoperov/gemini-images compose character_sheet.png accessories.png \
   "Image 1: Character sheet
 Image 2: Accessories
 Character: From image 1, front-facing
@@ -89,23 +86,6 @@ me
 | Reference Images | 1 | 14 |
 | Speed | Fast | Moderate |
 | Best For | Quick iterations | Production assets |
-
-## Library Usage
-
-```typescript
-import { GeminiImageGenerator } from 'gemini-images'
-
-const generator = new GeminiImageGenerator({
-  apiKey: process.env.GEMINI_API_KEY,
-})
-
-const result = await generator.generateFromText({
-  prompt: 'pixel art tree',
-  config: { aspectRatio: '1:1', imageSize: '1K' },
-})
-
-await GeminiImageGenerator.saveImageToFile(result, 'tree.png')
-```
 
 ## Development
 

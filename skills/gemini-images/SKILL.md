@@ -6,7 +6,7 @@ allowed-tools: Bash
 
 # Gemini Image Generation
 
-Local CLI: `./scripts/gemini-images.js <command> [args] [options]`
+CLI: `npx @krasnoperov/gemini-images <command> [args] [options]`
 
 ## Core Primitives
 
@@ -35,9 +35,9 @@ export GEMINI_API_KEY="your-key"  # Get at https://aistudio.google.com/app/apike
 ## Quick Examples
 
 ```bash
-./scripts/gemini-images.js generate "pixel art tree, white background" --output tree.png
-./scripts/gemini-images.js edit tree.png "add glowing runes" --output tree-magic.png
-./scripts/gemini-images.js compose hero.png sword.png "character holding sword" --output hero-armed.png
+npx @krasnoperov/gemini-images generate "pixel art tree, white background" --output tree.png
+npx @krasnoperov/gemini-images edit tree.png "add glowing runes" --output tree-magic.png
+npx @krasnoperov/gemini-images compose hero.png sword.png "character holding sword" --output hero-armed.png
 ```
 
 See `examples/` for complete working scripts.

@@ -27,17 +27,17 @@ interface CliOptions {
 
 function printUsage () {
   console.log(`
-Gemini Images - Core AI Image Generation Primitives
+Gemini Images - Consistent AI Image Generation
 
 Usage:
-  gemini-images <command> [arguments...] [options]
+  npx @krasnoperov/gemini-images <command> [arguments...] [options]
 
-CORE COMMANDS:
-  generate "<prompt>"                          Generate image from text description
-  edit <image> "<prompt>"                      Transform existing image with instructions
-  compose <img1> <img2> ... "<prompt>"         Combine multiple images with instructions
+COMMANDS:
+  generate "<prompt>"                    Text → Image
+  edit <image> "<prompt>"                Image + Instructions → Image
+  compose <img1> <img2> ... "<prompt>"   Multiple Images + Instructions → Image
 
-Options:
+OPTIONS:
   --model <model>           gemini-3-pro-image-preview (default) or gemini-2.5-flash-image
   --aspect-ratio <ratio>    1:1 (default), 16:9, 9:16, 2:3, 3:2, 3:4, 4:3, 4:5, 5:4, 21:9
   --image-size <size>       1K (default), 2K, 4K (Pro model required for 2K/4K)
@@ -45,28 +45,31 @@ Options:
   --api-key <key>           Gemini API key (or set GEMINI_API_KEY env var)
   --help                    Show this help message
 
-Examples:
-  # Generate from text
+EXAMPLES:
   gemini-images generate "pixel art tree, white background" --output tree.png
-
-  # Transform image
   gemini-images edit tree.png "add glowing blue runes" --output tree-magic.png
-
-  # Combine multiple images
   gemini-images compose hero.png sword.png "character holding sword" --output hero-armed.png
 
-Build Complex Workflows:
-  All game dev workflows (isometric, animation, equipment, etc.) can be built by
-  composing these three primitives. See examples/ for bash scripts showing how to:
-  - Generate animation frames (loop edit with frame numbers)
-  - Create 8-directional sprites (loop edit with directions)
-  - Add equipment cumulatively (chain edit calls)
-  - Generate consistent character series (compose with references)
+CONSISTENCY BEST PRACTICES:
+  Gemini has spatial understanding - it preserves visual features when given references.
 
-Environment Variables:
+  1. Character sheets    Generate front/back/side views to establish identity
+  2. Structured prompts  Use labels: "Image 1:", "Scene:", "Character:", "Lighting:"
+  3. Visual anchors      Repeat exact phrases: "auburn hair", "soft natural light"
+  4. Small deltas        Change ONE thing per step (pose OR location OR accessory)
+  5. Explicit changes    Say what to add AND remove: "Remove backpack. Add sword."
+  6. Entity references   Use "ranger from image 1" not just "the ranger"
+
+  Example structured prompt for compose:
+    "Image 1: Character sheet
+     Image 2: Accessories
+     Scene: Forest clearing
+     Character: Ranger from image 1, front-facing
+     Lighting: Soft natural light, top-left
+     Items: Backpack from image 2"
+
+ENVIRONMENT:
   GEMINI_API_KEY    Your API key from https://aistudio.google.com/app/apikey
-
-See examples/ directory for composition patterns and game asset workflows.
 `)
 }
 
