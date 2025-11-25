@@ -1,25 +1,46 @@
 # Gemini Images
 
-**Minimal AI image generation toolkit** with three core primitives: `generate`, `edit`, `compose`. Build any workflow by composition.
+**AI image generation skill for Claude Code** - Generate consistent game sprites, character sheets, and visual assets using Gemini's spatial understanding and reference sheet methodology.
 
-## Quick Start
+## Use in Claude Code
+
+This is a Claude Code skill. Install it from the marketplace:
+
+```bash
+/plugin marketplace add krasnoperov/claude-plugins
+/plugin install gemini-images@krasnoperov-plugins
+```
+
+Once installed, use the `/gemini-images` skill in your conversations:
+
+```
+/gemini-images generate a pixel art character sheet with front, back, and side views
+/gemini-images edit character.png "add armor and sword"
+/gemini-images compose character.png background.png "place character in forest scene"
+```
+
+See [`skills/gemini-images/SKILL.md`](skills/gemini-images/SKILL.md) for complete skill documentation.
+
+## Command Line Usage
+
+You can also use this package directly via npx:
 
 ```bash
 export GEMINI_API_KEY="your-key-here"
 
 # Generate from text
-npx @krasnoperov/gemini-images generate "pixel art tree" --output tree.png
+npx -y @krasnoperov/gemini-images@latest generate "pixel art tree" --output tree.png
 
 # Transform image
-npx @krasnoperov/gemini-images edit tree.png "add glowing runes" --output tree-magic.png
+npx -y @krasnoperov/gemini-images@latest edit tree.png "add glowing runes" --output tree-magic.png
 
 # Combine references
-npx @krasnoperov/gemini-images compose hero.png sword.png "character holding sword" --output hero-armed.png
+npx -y @krasnoperov/gemini-images@latest compose hero.png sword.png "character holding sword" --output hero-armed.png
 ```
 
 Get your API key: [Google AI Studio](https://aistudio.google.com/app/apikey)
 
-## Core Primitives
+## Core Operations
 
 ```
 generate "<prompt>"                          Text → Image
@@ -27,16 +48,7 @@ edit <image> "<prompt>"                      Image + Instructions → Image
 compose <img1> <img2> ... "<prompt>"         Images + Instructions → Image
 ```
 
-That's it. These three operations compose into any workflow.
-
-## Philosophy
-
-**Minimal but Sufficient:**
-- No built-in "animation" command - loop `edit` with frame numbers
-- No built-in "isometric" command - loop `edit` with directions
-- No built-in "equipment" command - chain `edit` cumulatively
-
-**Why?** Composition is more powerful than presets. Build what you need.
+These three operations compose into any workflow you need.
 
 ## Examples
 
@@ -51,14 +63,14 @@ Gemini has spatial understanding - it preserves visual features when given speci
 
 ### Character Sheets
 ```bash
-npx @krasnoperov/gemini-images generate \
+npx -y @krasnoperov/gemini-images@latest generate \
   "Character sheet: front view, back view, side view. Character: ranger, auburn hair, green jerkin." \
   --output character_sheet.png
 ```
 
 ### Structured Prompts
 ```bash
-npx @krasnoperov/gemini-images compose character_sheet.png accessories.png \
+npx -y @krasnoperov/gemini-images@latest compose character_sheet.png accessories.png \
   "Image 1: Character sheet
 Image 2: Accessories
 Character: From image 1, front-facing
@@ -67,7 +79,7 @@ Lighting: Soft natural light, top-left
 Camera: Eye level, medium shot" \
   --output scene.png
 ```
-me
+
 ## Options
 
 ```
@@ -94,17 +106,6 @@ npm run build      # Build TypeScript
 npm run typecheck  # Type checking
 npm run dev        # Dev mode with type stripping
 ```
-
-## Claude Code Plugin
-
-Install from marketplace:
-
-```bash
-/plugin marketplace add krasnoperov/claude-plugins
-/plugin install gemini-images@krasnoperov-plugins
-```
-
-See [`skills/gemini-images/SKILL.md`](skills/gemini-images/SKILL.md) for skill documentation.
 
 ## Acknowledgments
 
